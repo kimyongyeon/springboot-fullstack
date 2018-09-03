@@ -1,8 +1,6 @@
 package com.study.full.stack.fullstack_project.controller;
 
 import com.study.full.stack.fullstack_project.config.ServerProfiles;
-import com.study.full.stack.fullstack_project.dto.MembersDTO;
-import com.study.full.stack.fullstack_project.exception.TestException;
 import com.study.full.stack.fullstack_project.service.MemberRepository;
 import com.study.full.stack.fullstack_project.service.MemberSVC;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -81,37 +77,37 @@ public class HelloController {
 //        return "path: " + name;
 //    }
 
-    @GetMapping("/{depth}")
-    public String depth(@PathVariable String depth) throws Exception {
-
-        if (depth.equals("aop")) {
-            memberSVC.testAop();
-        }
-        else if (depth.equals("except")) {
-            throw new TestException("TEST EXCEPTION ERROR");
-        }
-        else if (depth.equals("async")) {
-            // http://dveamer.github.io/java/SpringAsync.html
-            memberSVC.method1("kim");
-        }
-        else {
-            memberSVC.test();
-        }
-        String returnUrl = "";
-        if (depth.equals("members")) {
-            List members = (List) memberRepository.findAll();
-            returnUrl = members.toString();
-        }
-        else if (depth.equals("insMembers")) {
-            MembersDTO membersDTO = new MembersDTO();
-            membersDTO.setName("firstInsertName");
-            memberRepository.save(membersDTO);
-            returnUrl = "ok";
-        } else {
-            returnUrl = "fail";
-        }
-        return returnUrl;
-    }
+//    @GetMapping("/{depth}")
+//    public String depth(@PathVariable String depth) throws Exception {
+//
+//        if (depth.equals("aop")) {
+//            memberSVC.testAop();
+//        }
+//        else if (depth.equals("except")) {
+//            throw new TestException("TEST EXCEPTION ERROR");
+//        }
+//        else if (depth.equals("async")) {
+//            // http://dveamer.github.io/java/SpringAsync.html
+//            memberSVC.method1("kim");
+//        }
+//        else {
+//            memberSVC.test();
+//        }
+//        String returnUrl = "";
+//        if (depth.equals("members")) {
+//            List members = (List) memberRepository.findAll();
+//            returnUrl = members.toString();
+//        }
+//        else if (depth.equals("insMembers")) {
+//            MembersDTO membersDTO = new MembersDTO();
+//            membersDTO.setName("firstInsertName");
+//            memberRepository.save(membersDTO);
+//            returnUrl = "ok";
+//        } else {
+//            returnUrl = "fail";
+//        }
+//        return returnUrl;
+//    }
 
     @GetMapping("/{depth1}/{depth2}")
     public String depth2(@PathVariable String depth1, @PathVariable String depth2) {

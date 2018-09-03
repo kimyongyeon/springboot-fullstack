@@ -23,6 +23,7 @@ public class RestConfiguration {
         resolver.setViewResolvers(resolvers);
         resolver.setContentNegotiationManager(manager);
 
+
         return resolver;
     }
 }

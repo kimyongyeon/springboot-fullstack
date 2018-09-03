@@ -3,6 +3,9 @@ package com.study.full.stack.fullstack_project.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.InternalResourceView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,5 +42,21 @@ public class WelcomeController {
         map.put("name", "tony");
         map.put("phone", "1234");
         return map;
+    }
+
+    @RequestMapping("/hello")
+    public void hello(Model model) {
+        model.addAttribute("name", "hello");
+    }
+
+    @RequestMapping("/mypage")
+    public View mypage() {
+        return new InternalResourceView("/WEB-INF/welcome.html");
+    }
+
+    @RequestMapping("/bodyReq")
+    @ResponseBody
+    public String bodyReq() {
+        return "<h1>bodyReq hello </h1>";
     }
 }
