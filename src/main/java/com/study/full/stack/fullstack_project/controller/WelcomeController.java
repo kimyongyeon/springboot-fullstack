@@ -1,6 +1,7 @@
 package com.study.full.stack.fullstack_project.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -30,5 +31,13 @@ public class WelcomeController {
         model.put("users", users);
 
         return "welcome";
+    }
+
+    @RequestMapping("/rest/api/all")
+    public Map all(Model model) {
+        Map map = new HashMap();
+        map.put("name", "tony");
+        map.put("phone", "1234");
+        return map;
     }
 }
