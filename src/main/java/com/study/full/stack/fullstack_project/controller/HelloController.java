@@ -82,12 +82,17 @@ public class HelloController {
 //    }
 
     @GetMapping("/{depth}")
-    public String depth(@PathVariable String depth) {
+    public String depth(@PathVariable String depth) throws Exception {
 
         if (depth.equals("aop")) {
             memberSVC.testAop();
-        } else if (depth.equals("except")) {
+        }
+        else if (depth.equals("except")) {
             throw new TestException("TEST EXCEPTION ERROR");
+        }
+        else if (depth.equals("async")) {
+            // http://dveamer.github.io/java/SpringAsync.html
+            memberSVC.method1("kim");
         }
         else {
             memberSVC.test();

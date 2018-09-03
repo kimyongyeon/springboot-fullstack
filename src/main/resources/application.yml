@@ -21,9 +21,9 @@ spring:
   profiles: local
   datasource:
       driver-class-name: org.h2.Driver
-      password: ''
       url: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
       username: sa
+      password: ''
   flyway:
       enabled: false
   h2:
@@ -49,9 +49,16 @@ spring:
   profiles: prod
   datasource:
       driver-class-name: org.h2.Driver
-      password: ''
       url: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
       username: sa
+      password: ''
+      tomcat:
+        connection-properties: useUnicode=yes;characterEncoding=UTF-8;autoReconnection=true
+        init-s-q-l: select 1
+        test-on-borrow: true
+        test-while-idle: true
+        validation-query: select 1
+        time-between-eviction-runs-millis: 600000
   flyway:
       enabled: false
   h2:
