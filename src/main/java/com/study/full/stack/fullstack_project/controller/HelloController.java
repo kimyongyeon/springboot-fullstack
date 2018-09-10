@@ -1,19 +1,22 @@
 package com.study.full.stack.fullstack_project.controller;
 
 import com.study.full.stack.fullstack_project.config.ServerProfiles;
+import com.study.full.stack.fullstack_project.dto.MembersDTO;
 import com.study.full.stack.fullstack_project.service.MemberRepository;
 import com.study.full.stack.fullstack_project.service.MemberSVC;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
+@Api(value = "v1-hello", description = "Hello API")
 public class HelloController {
 
     private static Logger logger = LoggerFactory.getLogger(HelloController.class);
@@ -43,8 +46,20 @@ public class HelloController {
         return "hello spring ";
     }
 
-//    @GetMapping("/members")
-//    public List getMembers() {
+    @RequestMapping(value = "/v1/hello", method = RequestMethod.GET)
+    @ApiOperation(value = "Get index page")
+    public String hello () {
+        return "/hello";
+    }
+
+    @PostMapping("/members")
+    public String setMembers(@RequestBody MembersDTO membersDTO) {
+        memberRepository.save(membersDTO);
+        return "ok";
+    }
+
+    @GetMapping("/members")
+    public List getMembers() {
 //        MembersDTO membersDTO = new MembersDTO();
 //        membersDTO.setName("admin");
 //        membersDTO.setUserId("adminId");
@@ -61,11 +76,12 @@ public class HelloController {
 //            membersDTO.setUserPassword("1234" + i);
 //            membersDTO.setAddr("seoul" + i);
 //            membersDTO.setTel("010-1234-1234" + i);
-//            membersDTOS.add(membersDTO);
+//            memberRepository.save(membersDTO);
+//            // membersDTOS.add(membersDTO);
 //        }
-//
-//        return membersDTOS;
-//    }
+        List membersDTOS = memberRepository.findAll();
+        return membersDTOS;
+    }
 //
 //    @GetMapping("/insMembers")
 //    public String setMembers(String name, String userId) {
@@ -109,19 +125,19 @@ public class HelloController {
 //        return returnUrl;
 //    }
 
-    @GetMapping("/{depth1}/{depth2}")
-    public String depth2(@PathVariable String depth1, @PathVariable String depth2) {
-        String returnUrl = "";
-        if (depth1.equals("member1")) {
-            returnUrl = ">" + depth1 + "/" + depth2;
-        }
-        else if (depth1.equals("member2")) {
-            returnUrl = ">>" + depth1 + "/" + depth2;
-        } else {
-            returnUrl = depth1 + "/" +  depth2;
-        }
-        return returnUrl;
-    }
+//    @GetMapping("/{depth1}/{depth2}")
+//    public String depth2(@PathVariable String depth1, @PathVariable String depth2) {
+//        String returnUrl = "";
+//        if (depth1.equals("member1")) {
+//            returnUrl = ">" + depth1 + "/" + depth2;
+//        }
+//        else if (depth1.equals("member2")) {
+//            returnUrl = ">>" + depth1 + "/" + depth2;
+//        } else {
+//            returnUrl = depth1 + "/" +  depth2;
+//        }
+//        return returnUrl;
+//    }
 
     /**
      * 이 컨트롤러 내에서 발생하는 모든 Number Format 예외를 처리한다     *

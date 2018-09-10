@@ -4,7 +4,6 @@ package com.study.full.stack.fullstack_project.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public class MemberSVC {
         list.add(msg);
         msg = "Hello, Spring Boot AOP4";
         list.add(msg);
-        for(Object message : list) {
+        for (Object message : list) {
             log.info((String) message);
         }
         return list;
@@ -37,7 +36,7 @@ public class MemberSVC {
 
     @Async
     public void method1(String message) throws Exception {
-        for(int i=0; i<99999; i++) {
+        for (int i = 0; i < 99999; i++) {
             log.info("i=>" + i);
         }
     }

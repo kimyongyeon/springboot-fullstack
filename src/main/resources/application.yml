@@ -17,6 +17,8 @@ spring:
     active: local #기본 환경 선택
 # local 환경
 ---
+mybatis:
+  config-location: classpath:mybatis-config.xml
 spring:
   profiles: local
   datasource:

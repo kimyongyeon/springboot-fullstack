@@ -13,6 +13,7 @@ import javax.persistence.*;
 @Table(name="tbl_member")
 public class MembersDTO {
 
+
     // 기본키
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
