@@ -20,6 +20,10 @@ spring:
 mybatis:
   config-location: classpath:mybatis-config.xml
 spring:
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
   profiles: local
   datasource:
       driver-class-name: org.h2.Driver
