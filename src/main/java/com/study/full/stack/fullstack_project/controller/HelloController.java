@@ -4,6 +4,8 @@ import com.study.full.stack.fullstack_project.config.ServerProfiles;
 import com.study.full.stack.fullstack_project.dto.MembersDTO;
 import com.study.full.stack.fullstack_project.service.MemberRepository;
 import com.study.full.stack.fullstack_project.service.MemberSVC;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
+@Api(value = "v1-hello", description = "Hello API")
 public class HelloController {
 
     private static Logger logger = LoggerFactory.getLogger(HelloController.class);
@@ -43,10 +46,23 @@ public class HelloController {
         return "hello spring ";
     }
 
+<<<<<<< HEAD
     @PostMapping("/members")
     public String setMembers(@RequestBody MembersDTO membersDTO) {
         memberRepository.save(membersDTO);
         return "OK";
+=======
+    @RequestMapping(value = "/v1/hello", method = RequestMethod.GET)
+    @ApiOperation(value = "Get index page")
+    public String hello () {
+        return "/hello";
+    }
+
+    @PostMapping("/members")
+    public String setMembers(@RequestBody MembersDTO membersDTO) {
+        memberRepository.save(membersDTO);
+        return "ok";
+>>>>>>> 7cd31a5e3a00ffe3204f6a8095321fa6c38cf4a3
     }
 
     @GetMapping("/members")
@@ -67,9 +83,14 @@ public class HelloController {
 //            membersDTO.setUserPassword("1234" + i);
 //            membersDTO.setAddr("seoul" + i);
 //            membersDTO.setTel("010-1234-1234" + i);
-//            membersDTOS.add(membersDTO);
+//            memberRepository.save(membersDTO);
+//            // membersDTOS.add(membersDTO);
 //        }
+<<<<<<< HEAD
         List<MembersDTO> membersDTOS = memberRepository.findAll();
+=======
+        List membersDTOS = memberRepository.findAll();
+>>>>>>> 7cd31a5e3a00ffe3204f6a8095321fa6c38cf4a3
         return membersDTOS;
     }
 //
@@ -115,19 +136,19 @@ public class HelloController {
 //        return returnUrl;
 //    }
 
-    @GetMapping("/{depth1}/{depth2}")
-    public String depth2(@PathVariable String depth1, @PathVariable String depth2) {
-        String returnUrl = "";
-        if (depth1.equals("member1")) {
-            returnUrl = ">" + depth1 + "/" + depth2;
-        }
-        else if (depth1.equals("member2")) {
-            returnUrl = ">>" + depth1 + "/" + depth2;
-        } else {
-            returnUrl = depth1 + "/" +  depth2;
-        }
-        return returnUrl;
-    }
+//    @GetMapping("/{depth1}/{depth2}")
+//    public String depth2(@PathVariable String depth1, @PathVariable String depth2) {
+//        String returnUrl = "";
+//        if (depth1.equals("member1")) {
+//            returnUrl = ">" + depth1 + "/" + depth2;
+//        }
+//        else if (depth1.equals("member2")) {
+//            returnUrl = ">>" + depth1 + "/" + depth2;
+//        } else {
+//            returnUrl = depth1 + "/" +  depth2;
+//        }
+//        return returnUrl;
+//    }
 
     /**
      * 이 컨트롤러 내에서 발생하는 모든 Number Format 예외를 처리한다     *

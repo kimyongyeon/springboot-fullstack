@@ -26,6 +26,10 @@ server:
 mybatis:
   config-location: classpath:mybatis-config.xml
 spring:
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
   profiles: local
   mvc:
     view:

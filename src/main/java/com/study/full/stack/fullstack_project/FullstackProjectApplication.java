@@ -13,9 +13,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableAsync
 @MapperScan(basePackages = "com.study.full.stack.fullstack_project.service")
-@EnableCaching
 @Slf4j
-public class FullstackProjectApplication implements CommandLineRunner{
+@EnableCaching
+public class FullstackProjectApplication implements CommandLineRunner {
 
 	private BookRepository bookRepository;
 
@@ -25,15 +25,14 @@ public class FullstackProjectApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-
 		bookRepository = new SimpleBookRepository();
-		log.info("....fetching books");
-		log.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
-		log.info("isbn-4567 -->" + bookRepository.getByIsbn("isbn-4567"));
-		log.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
-		log.info("isbn-4567 -->" + bookRepository.getByIsbn("isbn-4567"));
-		log.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
-		log.info("isbn-1234 -->" + bookRepository.getByIsbn("isbn-1234"));
-
+		log.info("....Fetching books");
+		log.info("isbn-1234 --> " + bookRepository.getByIsbn("isbn-1234"));
+		log.info("isbn-5678 --> " + bookRepository.getByIsbn("isbn-5678"));
+		log.info("isbn-1234 --> " + bookRepository.getByIsbn("isbn-1234"));
+		log.info("isbn-5678 --> " + bookRepository.getByIsbn("isbn-5678"));
+		log.info("isbn-5678 --> " + bookRepository.getByIsbn("isbn-5678"));
+		log.info("isbn-1234 --> " + bookRepository.getByIsbn("isbn-1234"));
+		log.info("isbn-1234 --> " + bookRepository.getByIsbn("isbn-1234"));
 	}
 }

@@ -1,6 +1,6 @@
 package com.study.full.stack.fullstack_project.dto;
-
 import lombok.Data;
+
 
 @Data
 public class DemoDTO {

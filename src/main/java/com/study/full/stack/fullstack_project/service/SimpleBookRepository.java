@@ -3,8 +3,6 @@ package com.study.full.stack.fullstack_project.service;
 import com.study.full.stack.fullstack_project.dto.BookDTO;
 import org.springframework.stereotype.Component;
 
-import org.springframework.cache.annotation.Cacheable;
-
 @Component
 public class SimpleBookRepository implements BookRepository {
     @Override
