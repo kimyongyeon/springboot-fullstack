@@ -2,16 +2,10 @@ package com.study.full.stack.fullstack_project.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.MediaType;
 import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.servlet.ViewResolver;
-<<<<<<< HEAD
-import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-=======
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
->>>>>>> 7cd31a5e3a00ffe3204f6a8095321fa6c38cf4a3
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import springfox.documentation.builders.PathSelectors;
@@ -26,22 +20,6 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-<<<<<<< HEAD
-public class RestConfiguration  extends WebMvcConfigurerAdapter {
-
-    /*
-     * Configure ContentNegotiationManager
-     */
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.ignoreAcceptHeader(true).defaultContentType(
-                MediaType.TEXT_HTML);
-    }
-
-    @Bean
-    public  ViewResolver contentNegotiatingViewResolver(ContentNegotiationManager manager) {
-        ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
-=======
 @EnableSwagger2
 public class RestConfiguration extends WebMvcConfigurerAdapter {
 
@@ -94,11 +72,7 @@ public class RestConfiguration extends WebMvcConfigurerAdapter {
         ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
         resolver.setViewResolvers(resolvers);
 
->>>>>>> 7cd31a5e3a00ffe3204f6a8095321fa6c38cf4a3
         resolver.setContentNegotiationManager(manager);
-
-        // Define all possible view resolvers
-        List<ViewResolver> resolvers = new ArrayList<ViewResolver>();
 
 //        resolvers.add(jaxb2MarshallingXmlViewResolver());
         resolvers.add(jsonViewResolver());

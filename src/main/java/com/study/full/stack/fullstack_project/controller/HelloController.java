@@ -46,27 +46,10 @@ public class HelloController {
         return "hello spring ";
     }
 
-<<<<<<< HEAD
-    @PostMapping("/members")
-    public String setMembers(@RequestBody MembersDTO membersDTO) {
-        memberRepository.save(membersDTO);
-        return "OK";
-=======
-    @RequestMapping(value = "/v1/hello", method = RequestMethod.GET)
-    @ApiOperation(value = "Get index page")
-    public String hello () {
-        return "/hello";
-    }
-
-    @PostMapping("/members")
-    public String setMembers(@RequestBody MembersDTO membersDTO) {
-        memberRepository.save(membersDTO);
-        return "ok";
->>>>>>> 7cd31a5e3a00ffe3204f6a8095321fa6c38cf4a3
-    }
-
     @GetMapping("/members")
     public List getMembers() {
+        return memberRepository.findAll();
+    }
 //        MembersDTO membersDTO = new MembersDTO();
 //        membersDTO.setName("admin");
 //        membersDTO.setUserId("adminId");
@@ -86,13 +69,6 @@ public class HelloController {
 //            memberRepository.save(membersDTO);
 //            // membersDTOS.add(membersDTO);
 //        }
-<<<<<<< HEAD
-        List<MembersDTO> membersDTOS = memberRepository.findAll();
-=======
-        List membersDTOS = memberRepository.findAll();
->>>>>>> 7cd31a5e3a00ffe3204f6a8095321fa6c38cf4a3
-        return membersDTOS;
-    }
 //
 //    @GetMapping("/insMembers")
 //    public String setMembers(String name, String userId) {
