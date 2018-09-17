@@ -12,30 +12,61 @@ logging:
 test:
   db: localdb
 
+#기본 환경 선택
 spring:
   profiles:
-    active: local #기본 환경 선택
+    active: local
+
+server:
+  tomcat:
+    max-threads: 10
+
 # local 환경
 ---
+mybatis:
+  config-location: classpath:mybatis-config.xml
 spring:
   profiles: local
+  mvc:
+    view:
+      prefix: /WEB-INF/
+      suffix: .jsp
   datasource:
       driver-class-name: org.h2.Driver
-      url: jdbc:h2:mem:example-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      url: jdbc:h2:file:d:/data/test;
       username: sa
       password: ''
+#      tomcat:
+#        initial-size: 50
+#        max-active: 100
+#        max-idle: 100
+#        min-idle: 0
+#        max-wait: 30000
+#        min-evictable-idle-time-millis: 60000
   flyway:
-      enabled: false
+      enabled: true
+      check-location: true # 마이그레이션 스크립트 파일이 존재하는지 여부를 확인
+      locations: classpath:db/migration # 마이그레이션 스크립트 위치
+      baseline-version: 1 # 마이그레이션을 시작할 번호
+      sql-migration-prefix: V
+      url: jdbc:h2:file:d:/data/test;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE;DB_CLOSE_ON_EXIT=FALSE;  # Flyway 소유의 데이터소스를 생성하려고 하는 경우 사용
+      user: sa # Flyway 소유의 데이터소스를 생성하려고 하는 경우 사용
+      password: # Flyway 소유의 데이터소스를 생성하려고 하는 경우 사용
+
+
+      출처: https://java.ihoney.pe.kr/380 [허니몬(Honeymon)의 자바guru]
   h2:
       console:
           enabled: true
   jpa:
-      database: h2
-      database-platform: org.hibernate.dialect.H2Dialect
-      generate-ddl: false
+#      database: h2
+#      database-platform: org.hibernate.dialect.H2Dialect
+#      generate-ddl: false
       hibernate:
-          ddl-auto: create
-      show-sql: true
+          ddl-auto: validate
+#      hibernate:
+#          ddl-auto: create
+#      show-sql: true
 server:
   port: 8080
 env:

@@ -1,0 +1,1 @@
+alter table customers add addr VARCHAR (30);

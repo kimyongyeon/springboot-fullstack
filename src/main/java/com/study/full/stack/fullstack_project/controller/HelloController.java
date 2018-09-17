@@ -1,16 +1,16 @@
 package com.study.full.stack.fullstack_project.controller;
 
 import com.study.full.stack.fullstack_project.config.ServerProfiles;
+import com.study.full.stack.fullstack_project.dto.MembersDTO;
 import com.study.full.stack.fullstack_project.service.MemberRepository;
 import com.study.full.stack.fullstack_project.service.MemberSVC;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -43,8 +43,14 @@ public class HelloController {
         return "hello spring ";
     }
 
-//    @GetMapping("/members")
-//    public List getMembers() {
+    @PostMapping("/members")
+    public String setMembers(@RequestBody MembersDTO membersDTO) {
+        memberRepository.save(membersDTO);
+        return "OK";
+    }
+
+    @GetMapping("/members")
+    public List getMembers() {
 //        MembersDTO membersDTO = new MembersDTO();
 //        membersDTO.setName("admin");
 //        membersDTO.setUserId("adminId");
@@ -63,9 +69,9 @@ public class HelloController {
 //            membersDTO.setTel("010-1234-1234" + i);
 //            membersDTOS.add(membersDTO);
 //        }
-//
-//        return membersDTOS;
-//    }
+        List<MembersDTO> membersDTOS = memberRepository.findAll();
+        return membersDTOS;
+    }
 //
 //    @GetMapping("/insMembers")
 //    public String setMembers(String name, String userId) {

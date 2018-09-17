@@ -14,27 +14,27 @@ import java.util.Map;
 
 @Controller
 public class WelcomeController {
-    @RequestMapping("/welcome")
-    public String welcome(Map<String, Object> model) {
-        List<Map> users = new ArrayList<Map>();
-        Map<String, String> user = new HashMap<>();
-        user.put("login", "tony");
-        user.put("name", "kim...");
-        users.add(user);
-        user = new HashMap<>();
-        user.put("login", "tony2");
-        user.put("name", "kim...2");
-        users.add(user);
-        user = new HashMap<>();
-        user.put("login", "tony3");
-        user.put("name", "kim...3");
-        users.add(user);
-
-        model.put("message", "hello thymeleaf");
-        model.put("users", users);
-
-        return "welcome";
-    }
+//    @RequestMapping("/welcome")
+//    public String welcome(Map<String, Object> model) {
+//        List<Map> users = new ArrayList<Map>();
+//        Map<String, String> user = new HashMap<>();
+//        user.put("login", "tony");
+//        user.put("name", "kim...");
+//        users.add(user);
+//        user = new HashMap<>();
+//        user.put("login", "tony2");
+//        user.put("name", "kim...2");
+//        users.add(user);
+//        user = new HashMap<>();
+//        user.put("login", "tony3");
+//        user.put("name", "kim...3");
+//        users.add(user);
+//
+//        model.put("message", "hello thymeleaf");
+//        model.put("users", users);
+//
+//        return "welcome";
+//    }
 
     @RequestMapping("/rest/api/all")
     public Map all(Model model) {
@@ -44,14 +44,15 @@ public class WelcomeController {
         return map;
     }
 
-    @RequestMapping("/hello")
+    @RequestMapping("/myView")
     public void hello(Model model) {
         model.addAttribute("name", "hello");
     }
 
-    @RequestMapping("/mypage")
-    public View mypage() {
-        return new InternalResourceView("/WEB-INF/welcome.html");
+    @RequestMapping("/welcome")
+    public String welcome(Model model) {
+        model.addAttribute("name", "test");
+        return "welcome";
     }
 
     @RequestMapping("/bodyReq")

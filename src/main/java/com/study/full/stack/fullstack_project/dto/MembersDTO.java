@@ -15,18 +15,19 @@ public class MembersDTO {
 
     // 기본키
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_seq")
     private int memberSeq;
 
-    @Column
+    @Column(name = "name")
     private String name;
-    @Column
+    @Column(name = "user_id")
     private String userId;
-    @Column
+    @Column(name = "user_password")
     private String userPassword;
-    @Column
+    @Column(name = "addr")
     private String addr;
-    @Column
+    @Column(name = "tel")
     private String tel;
 
 }
