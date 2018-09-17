@@ -48,7 +48,7 @@ spring:
 #        max-wait: 30000
 #        min-evictable-idle-time-millis: 60000
   flyway:
-      enabled: true
+      enabled: false
       check-location: true # 마이그레이션 스크립트 파일이 존재하는지 여부를 확인
       locations: classpath:db/migration # 마이그레이션 스크립트 위치
       baseline-version: 1 # 마이그레이션을 시작할 번호
